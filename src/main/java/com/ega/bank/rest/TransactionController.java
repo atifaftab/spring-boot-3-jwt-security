@@ -13,8 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/transaction")
 @RequiredArgsConstructor
-//@CrossOrigin(origins = "http://localhost:3000")
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "http://localhost:3000")
 public class TransactionController {
 
     private final TransactionService transactionService;
