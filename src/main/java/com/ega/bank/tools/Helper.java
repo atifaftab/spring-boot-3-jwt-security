@@ -6,6 +6,7 @@ import com.ega.bank.user.User;
 import com.ega.bank.user.UserRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
+import org.springframework.dao.DataAccessResourceFailureException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Component;
 
@@ -26,26 +27,6 @@ public class Helper {
         String formattedNum = String.format("%010d", randomNum);
         return formattedNum;
     }
-
-//    public int getUserIdFromRequest(HttpServletRequest request){
-//        final String authHeader = request.getHeader(HttpHeaders.AUTHORIZATION);
-//        final String refreshToken;
-//        final String userEmail;
-//        int userId = 0;
-//        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
-//            return 0;
-//        }
-//        refreshToken = authHeader.substring(7);
-//        userEmail = jwtService.extractUsername(refreshToken);
-//        if (userEmail != null) {
-//            var user = this.repository.findByEmail(userEmail)
-//                    .orElseThrow();
-//            var user = this.userService.findByEmail(userEmail);
-//            userId = user.getId();
-//        }
-//        return userId;
-//    }
-
 
     public int getUserIdFromRequest(HttpServletRequest request){
        User user = getUserFromRequest(request);
@@ -69,7 +50,7 @@ public class Helper {
         userEmail = jwtService.extractUsername(refreshToken);
         if (userEmail != null) {
             user = this.repository.findByEmail(userEmail)
-                    .orElseThrow();
+                    .orElseThrow(() -> new DataAccessResourceFailureException("No User found"));
         }
         return user;
     }

@@ -25,7 +25,6 @@ public class TransactionController {
 
     @PostMapping("credit")
     ResponseEntity<Boolean> credit(@RequestBody AmountDTO amountDTO, HttpServletRequest request){
-        System.out.println("--------------------------Hello world -----------------");
         return ResponseEntity.ok(transactionService.credit(amountDTO.getAmount(), request));
     }
 

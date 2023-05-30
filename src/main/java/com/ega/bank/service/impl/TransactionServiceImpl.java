@@ -51,7 +51,7 @@ public class TransactionServiceImpl implements TransactionService {
     @Override
     public Boolean debit(BigDecimal amount, HttpServletRequest request) {
         Account account = accountService.getBankAccountByUserId(request);
-        if(amount.compareTo(account.getBalance())==-1){
+        if (amount.compareTo(account.getBalance()) == -1) {
             BigDecimal newBalance = account.getBalance().subtract(amount);
             var transaction = Transaction.builder()
                     .updatedDate(LocalDate.now())
@@ -66,7 +66,6 @@ public class TransactionServiceImpl implements TransactionService {
             account.setBalance(newBalance);
             account = accountService.update(account);
             return true;
-        }
-        else return false;
+        } else return false;
     }
 }
