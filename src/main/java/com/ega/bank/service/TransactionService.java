@@ -1,6 +1,5 @@
 package com.ega.bank.service;
 
-import com.ega.bank.models.Account;
 import com.ega.bank.models.Transaction;
 import jakarta.servlet.http.HttpServletRequest;
 

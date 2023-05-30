@@ -1,7 +1,6 @@
 package com.ega.bank.tools;
 
 import com.ega.bank.config.JwtService;
-import com.ega.bank.service.UserService;
 import com.ega.bank.user.User;
 import com.ega.bank.user.UserRepository;
 import jakarta.servlet.http.HttpServletRequest;
@@ -18,7 +17,6 @@ public class Helper {
 
     private final JwtService jwtService;
     private final UserRepository repository;
-//    private final UserService userService;
 
     //get 10 digit random number for account
     public static String getTenDigitAccountNumber(){
